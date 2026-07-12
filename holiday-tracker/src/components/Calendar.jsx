@@ -10,10 +10,19 @@ const Calendar = () => {
             status: 'available',
             employeesOff: 3,
             holidayLimit: 5,
-            remainingHolidays: 2    
+            remainingHolidays: 2,
+        },
+        {
+            day: 2,
+            status: 'unavailable',
+            employeesOff: 3,
+            holidayLimit: 5,
+            remainingHolidays: 2  
+            }
+            
+            
 
 
-        }
     ] 
     ;
     return (
@@ -27,8 +36,13 @@ const Calendar = () => {
             {days.map((day) => {
                 const availabilityInfo = availability.find(item => item.day === day)
                 return (
-                    <div key={day} className={availabilityInfo ? "bg-green-500" : ""} min-h-16 border p-1 text-sm text-center md:min-h-24 md:p-3>
+                    <div key={day} className={availabilityInfo ? availabilityInfo.status === 'available' ? 'bg-green-500' :  'bg-red-500' : ''} min-h-16 border p-1 text-sm text-center md:min-h-24 md:p-3>
                         {day}
+                        {availabilityInfo && (
+                            <div className="mt-2 text-xs text-gray-500">
+                                <p>{availabilityInfo.status}</p>
+                            </div>
+                        )}
                     </div>
                 )
             })}
