@@ -25,7 +25,7 @@ const Calendar = () => {
             {availability.map((date) => {
                 return (
                     <div key={date.date} className={`min-h-16 border p-1 text-sm text-center md:min-h-24 md:p-3 ${date.status === "green" ? "bg-green-500" : date.status === "red" ? "bg-red-500" : "bg-yellow-500"}`}>
-                        {date.date}
+                        {new Date(date.date).getDate()}
                     </div>
                 )
             })}
