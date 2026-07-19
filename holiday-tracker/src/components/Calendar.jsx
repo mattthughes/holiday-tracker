@@ -1,31 +1,11 @@
 import React from 'react'
 import availability from '../utils/availability'
+import CalendarDay from './CalendarDay'
 
 const Calendar = () => {
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const daysInMonth = 31;
-    const available = 'bg-green-500';
-    const unavailable = 'bg-red-500';
-    const limited = 'bg-yellow-500';
     const days = Array.from({ length: daysInMonth}, (_, index) => index +1)
-    
-    function getAvailabilityStatus(day) {
-        console.log(day)
-        const availabilityInfo = availability.find(item => item.day === day)
-        console.log(availabilityInfo)
-        if (!availabilityInfo) {
-            return "bg-blue-500";
-        }
-        const holidayStatus = availabilityInfo.status;
-        
-        if (holidayStatus === 'unavailable') {
-             return unavailable;
-        } else if (holidayStatus === 'limited') {
-             return limited;
-        } else {
-             return available;
-        }
-    }
     return (
         <section className="mx-auto max-w-4xl p-6">
         <div className="grid grid-cols-7 overflow-hidden rounded-lg border text-sm font-medium text-gray-700">    
@@ -36,14 +16,8 @@ const Calendar = () => {
             ))}
             {days.map((day) => {
                 return (
-<div key={day} className={`day ${getAvailabilityStatus(day)}`} min-h-16 border p-1 text-sm text-center md:min-h-24 md:p-3>
-                        {day}
-                        
-                    </div>
-                )
-
-                    
-                
+                    <CalendarDay key={day} day={day} availability={availability.find(item => item.day === day)} />
+                ) 
             })}
         </div>
         </section>
