@@ -1,4 +1,5 @@
 import React from 'react'
+import availability from '../utils/availability'
 
 const Calendar = () => {
     const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -7,27 +8,7 @@ const Calendar = () => {
     const unavailable = 'bg-red-500';
     const limited = 'bg-yellow-500';
     const days = Array.from({ length: daysInMonth}, (_, index) => index +1)
-    const availability = [
-        {
-            day: 1,
-            status: 'available',
-            employeesOff: 3,
-            holidayLimit: 5,
-            remainingHolidays: 2,
-        },
-        {
-            day: 2,
-            status: 'unavailable',
-            employeesOff: 3,
-            holidayLimit: 8,
-            remainingHolidays: 2  
-            }
-            
-            
-
-
-    ] 
-    ;
+    
     function getAvailabilityStatus(day) {
         console.log(day)
         const availabilityInfo = availability.find(item => item.day === day)
